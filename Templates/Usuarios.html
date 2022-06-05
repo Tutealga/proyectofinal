@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    {% for usuario in usuarios %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{usuario.nombre}}</h5>
+          <p class="card-text">Edad: {{usuario.edad}}</p>
+          <p class="card-text">Alta: {{usuario.fecha_alta}}</p>
+          <p class="card-text">DNI: {{usuario.DNI}}</p>
+        </div>
+      </div>
+
+    {% endfor %}     
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Productos</h5>
+        <div class="d-flex" style="flex-direction: column">
+        <a style="margin:5px 0px" href="/productos/" class="btn btn-primary">Ver</a>
+        <a style="margin:5px 0px" href="#" class="btn btn-primary">Crear</a>
+    </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Usuarios</h5>
+        <div class="d-flex" style="flex-direction: column">
+        <a style="margin:5px 0px" href="/usuarios/" class="btn btn-primary">Ver</a>
+        <a style="margin:5px 0px" href="#" class="btn btn-primary">Crear</a>
+    </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Comentarios</h5>
+        <div class="d-flex" style="flex-direction: column">
+        <a style="margin:5px 0px" href="/descripcion/" class="btn btn-primary">Ver</a>
+        <a style="margin:5px 0px" href="#" class="btn btn-primary">Crear</a>
+    </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
