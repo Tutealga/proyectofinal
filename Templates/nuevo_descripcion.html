@@ -4,8 +4,7 @@
 <h1 style="text-align: center">Crear comentario</h1>
 {% endblock %}
 
-{% block contenido %}
-    
+{% block contenido %} 
 {% if form %}
     <form action="" method="POST">
       {% csrf_token %}
@@ -24,6 +23,5 @@
        </div>
 
 {% endif %}
-
 {% endblock %}
 

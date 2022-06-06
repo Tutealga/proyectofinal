@@ -2,7 +2,6 @@
 
 {% block contenido %}
  {% for buscar_producto in buscar_productos %}
-
     <div class="card" style="width: 18rem">
       <div class="card-body">
         <h5 class="card-title">{{buscar_producto.nombre}}</h5>
@@ -11,10 +10,9 @@
         <a href="#" class="btn btn-primary">Comprar</a>
       </div>
     </div>
-  
  {% endfor %}
- {% for buscar_usuario in buscar_usuarios %}
 
+ {% for buscar_usuario in buscar_usuarios %}
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">{{buscar_usuario.nombre}}</h5>
@@ -23,16 +21,14 @@
         <p class="card-text">DNI: {{buscar_usuario.DNI}}</p>
       </div>
     </div>
-  
  {% endfor %}
- {% for buscar_descripcion in buscar_descripciones %}
 
+ {% for buscar_descripcion in buscar_descripciones %}
  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
   <div class="card-header">{{buscar_descripcion.id}}</div>
    <div class="card-body">
     <p class="card-text">{{buscar_descripcion.comentario}}</p>
     <p><i class="fa-solid fa-star"></i> {{buscar_descripcion.puntuacion}}</p>
   </div>
-  
  {% endfor %}
 {% endblock %}
