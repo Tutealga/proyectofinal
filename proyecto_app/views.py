@@ -3,23 +3,25 @@ from django.shortcuts import render
 from proyecto_app.models import Productos, Usuarios, Descripcion
 from proyecto_app.forms import Usuarios_form, Productos_form, Descripcion_form
 
-# Create your views here.
-
+# Vista productos
 def productos(request):
     productos = Productos.objects.all()
     context = {'productos':productos}
     return render(request, 'productos.html', context = context)
 
+# Vista usuarios
 def usuarios(request):
     usuarios = Usuarios.objects.all()
     context = {'usuarios':usuarios}
     return render(request, 'usuarios.html', context = context)
 
+# Vista comentarios
 def descripcion(request):
     descripcion = Descripcion.objects.all()
     context = {'descripcion':descripcion}
     return render(request, 'descripcion.html', context = context)
 
+# Vista para buscar entre modelos
 def buscar(request):
     buscar_productos = Productos.objects.filter(nombre__icontains = request.GET['search'])
     buscar_usuarios = Usuarios.objects.filter(nombre__icontains = request.GET['search'])
@@ -27,6 +29,7 @@ def buscar(request):
     context = {'buscar_productos':buscar_productos,'buscar_usuarios':buscar_usuarios,'buscar_descripciones':buscar_descripciones}
     return render(request, 'buscar.html', context = context)
 
+# Vista crear nuevo usuario
 def nuevo_usuario(request):
     if request.method == 'GET':
         form = Usuarios_form()
@@ -45,6 +48,7 @@ def nuevo_usuario(request):
             context ={'nuevo_usuario':nuevo_usuario}
         return render(request, 'nuevo_usuario.html', context=context)
 
+# Vista crear nuevo producto
 def nuevo_producto(request):
     if request.method == 'GET':
         form = Productos_form()
@@ -63,6 +67,7 @@ def nuevo_producto(request):
             context ={'nuevo_producto':nuevo_producto}
         return render(request, 'nuevo_producto.html', context=context)
 
+# Vista crear nuevo comentario
 def nuevo_descripcion(request):
     if request.method == 'GET':
         form = Descripcion_form()
