@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block titulo %}
+    <h1 style="text-align:center">Productos</h1>
+{% endblock %}
+
 {% block buscar %}
 <form class="form-inline my-2 my-lg-0" method="GET" action="/buscar-productos/">
   <input class="form-control mr-sm-2" type="text" name="search" placeholder="Buscar" aria-label="Search">

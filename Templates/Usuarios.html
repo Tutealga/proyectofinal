@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block titulo %}
+    <h1 style="text-align:center">Usuarios</h1>
+{% endblock %}
+
 {% block contenido %}
     {% for usuario in usuarios %}
     <div class="card" style="width: 18rem;">
