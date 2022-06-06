@@ -38,9 +38,10 @@
                 </div>
               </li>
           </ul>
-          {% block buscar %}
-    
-          {% endblock %}
+          <form class="form-inline my-2 my-lg-0" method="GET" action="/buscar/">
+            <input class="form-control mr-sm-2" type="text" name="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+          </form>
         </div>
       </nav>
 

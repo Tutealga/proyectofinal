@@ -1,28 +1,27 @@
 {% extends "base.html" %}
 
 {% block titulo %}
+<h1 style="text-align: center">Crear comentario</h1>
 {% endblock %}
 
 {% block contenido %}
     
 {% if form %}
-    <h1>Aca va el contenido de crear descripcion</h1>
-
     <form action="" method="POST">
       {% csrf_token %}
       <table>
           {{form.as_table}}
       </table>
-      <input type="submit", value="enviar">
+      <input class="btn btn-primary" type="submit", value="Crear">
     </form>
 {% elif nuevo_descripcion %}
-    <div class="card" style="width: 18rem;">
-       <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-       <div class="card-body">
-          <h5 class="card-title">{{nuevo_descripcion.comentarios}}</h5>
-          <p class="card-text">{{nuevo_descripcion.puntuacion}}</p>
+    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{nuevo_descripcion.id}}</div>
+         <div class="card-body">
+          <p class="card-text">{{nuevo_descripcion.comentario}}</p>
+          <p><i class="fa-solid fa-star"></i> {{nuevo_descripcion.puntuacion}}</p>
+        </div>
        </div>
-    </div>
 
 {% endif %}
 

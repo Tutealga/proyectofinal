@@ -7,7 +7,7 @@
 {% block contenido %}
   {% for descripciones in descripcion %}
     <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-     <div class="card-header">Comentario</div>
+     <div class="card-header">{{descripciones.id}}</div>
       <div class="card-body">
        <p class="card-text">{{descripciones.comentario}}</p>
        <p><i class="fa-solid fa-star"></i> {{descripciones.puntuacion}}</p>

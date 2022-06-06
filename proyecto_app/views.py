@@ -20,10 +20,12 @@ def descripcion(request):
     context = {'descripcion':descripcion}
     return render(request, 'descripcion.html', context = context)
 
-def buscar_productos(request):
+def buscar(request):
     buscar_productos = Productos.objects.filter(nombre__icontains = request.GET['search'])
-    context = {'buscar_productos':buscar_productos}
-    return render(request, 'buscar_productos.html', context = context)
+    buscar_usuarios = Usuarios.objects.filter(nombre__icontains = request.GET['search'])
+    buscar_descripciones = Descripcion.objects.filter(id__icontains = request.GET['search'])
+    context = {'buscar_productos':buscar_productos,'buscar_usuarios':buscar_usuarios,'buscar_descripciones':buscar_descripciones}
+    return render(request, 'buscar.html', context = context)
 
 def nuevo_usuario(request):
     if request.method == 'GET':
