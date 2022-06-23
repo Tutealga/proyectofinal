@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<h1 style="text-align: center">Detalle producto</h1>
+{% endblock %}
+
+{% block contenido %}
+    
+    <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">{{object.nombre}}</h5>
+          <p class="card-text">${{object.precio}}</p>
+          <p class="card-text">{{object.sku}}</p>
+          <a href="/editar-productos/{{object.id}}/" class="btn btn-primary">Editar</a>
+          <a href="/borrar-productos/{{object.id}}/" class="btn btn-primary">Eliminar</a>
+        </div>
+      </div>
+
+
+{% endblock %}

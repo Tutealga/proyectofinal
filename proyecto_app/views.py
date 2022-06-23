@@ -3,6 +3,37 @@ from django.shortcuts import render
 from proyecto_app.models import Productos, Usuarios, Descripcion
 from proyecto_app.forms import Usuarios_form, Productos_form, Descripcion_form
 
+from django.views.generic import DetailView, DeleteView, UpdateView
+
+from django.urls import reverse
+
+class Detalle_productos(DetailView):
+    model = Productos
+    template_name = 'detalle_productos.html'
+
+class Borrar_productos(DeleteView):
+    model = Productos
+    template_name = 'borrar_productos.html'
+    def get_success_url(self):
+        return reverse('productos')
+
+#class Editar_productos(UpdateView):
+#    model = Productos
+#    template_name = 'editar_productos.html'
+#    fields= '__all__'
+#
+#    def get_success_url(self):
+#       return reverse('detalle_productos', kwargs={'pk':self.object.pk})
+
+class Editar_productos(UpdateView):
+    model = Productos
+    template_name = 'editar_productos.html'
+    fields = '__all__'
+
+
+    def get_success_url(self):
+        return reverse('detalle-productos', kwargs = {'pk':self.object.pk})
+
 # Vista productos
 def productos(request):
     productos = Productos.objects.all()
