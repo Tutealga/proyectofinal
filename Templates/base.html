@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <a class="navbar-brand" href="/">Inicio</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -30,6 +30,26 @@
               <li class="nav-item">
                 <a class="nav-link" href="/proyecto_app/detalle-productos/{{object.id}}/">Comentarios</a>
               </li>
+              {% if request.user.is_authenticated %}
+                <li class="nav-item" style="margin-right: 2rem">
+                    <h5>{{request.user.username}}</h5>
+                </li>
+
+                <li class="nav-item">
+                    <img src="{{request.user.user_profile.image.url}}" style="height: 2rem;">
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout/">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login/">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register/">Register</a>
+                </li>
+                {% endif %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/productos/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                   Crear nuevo
