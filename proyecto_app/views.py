@@ -32,7 +32,7 @@ class Editar_productos(UpdateView):
 
 
     def get_success_url(self):
-        return reverse('detalle-productos', kwargs = {'pk':self.object.pk})
+        return reverse('detalle_producto', kwargs = {'pk':self.object.pk})
 
 # Vista productos
 def productos(request):
