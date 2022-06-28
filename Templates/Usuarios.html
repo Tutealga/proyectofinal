@@ -5,15 +5,19 @@
 {% endblock %}
 
 {% block contenido %}
-    {% for usuario in usuarios %}
+<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+    {% for usuario in usuario_perfil %}
     <div class="card" style="width: 18rem;">
+      {% if usuario.image %}
+      <img src="{{usuario.imagen.url}}" class="card-img-top" >
+      {% endif %}
         <div class="card-body">
-          <h5 class="card-title">{{usuario.nombre}}</h5>
-          <p class="card-text">Edad: {{usuario.edad}}</p>
-          <p class="card-text">Alta: {{usuario.fecha_alta}}</p>
-          <p class="card-text">DNI: {{usuario.DNI}}</p>
+          <img src="{{usuario.imagen.url}}" class="card-img-top" >
+          <p class="card-text">Usuario: {{usuario.usuario}}</p>
+          <p class="card-text">Telefono: {{usuario.telefono}}</p>
         </div>
       </div>
 
-    {% endfor %}     
+    {% endfor %}   
+</div>  
 {% endblock %}

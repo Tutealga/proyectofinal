@@ -15,7 +15,7 @@
     </form>
 {% elif nuevo_descripcion %}
     <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header">{{nuevo_descripcion.id}}</div>
+        <div class="card-header">{{nuevo_descripcion.usuario.nombre}}</div>
          <div class="card-body">
           <p class="card-text">{{nuevo_descripcion.comentario}}</p>
           <p><i class="fa-solid fa-star"></i> {{nuevo_descripcion.puntuacion}}</p>

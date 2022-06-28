@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 
 {% block titulo %}
-    <h1 style="text-align:center">Actualizar productos</h1>
+    <h1 style="text-align:center">Complete los campos a actualizar</h1>
 {% endblock %}
 
 {% block contenido %}
-
     {% if form %}
-        <h2>Complete los campos a actualizar</h2>
         <form action="" method="POST">
             {% csrf_token %}
             <table>
@@ -16,5 +14,6 @@
             <input type="submit" , value="Enviar">
         </form>
     {% endif %}
+{% endif %}
 
 {% endblock %}

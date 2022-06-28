@@ -1,42 +1,56 @@
 {% extends "base.html" %}
 
 {% block titulo %}
-    <h1 style="text-align:center">Pagina de Inicio</h1>
+    <h1 style="text-align:center">Tienda online de...</h1>
 {% endblock %}
 
 
 {% block contenido %}
+{% for product in productos %}
+{% if product.stock == True %}
 
-  <div class="card-deck">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Productos</h5>
-          <div class="d-flex" style="flex-direction: column">
-          <a style="margin:5px 0px" href="/productos/" class="btn btn-primary">Ver</a>
-          <a style="margin:5px 0px" href="#" class="btn btn-primary">Crear</a>
-      </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Usuarios</h5>
-          <div class="d-flex" style="flex-direction: column">
-          <a style="margin:5px 0px" href="/usuarios/" class="btn btn-primary">Ver</a>
-          <a style="margin:5px 0px" href="#" class="btn btn-primary">Crear</a>
-      </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Comentarios</h5>
-          <div class="d-flex" style="flex-direction: column">
-          <a style="margin:5px 0px" href="/descripcion/" class="btn btn-primary">Ver</a>
-          <a style="margin:5px 0px" href="#" class="btn btn-primary">Crear</a>
-      </div>
-        </div>
-      </div>
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">{{product.nombre}}</h5>
+      <p class="card-text">${{product.precio}}</p>
+      <p class="card-text">{{product.sku}}</p>
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+        <a href="/detalle-productos/{{product.id}}/" class="btn btn-primary">Detalle</a>
+      {% else %}
+        <a href="#" class="btn btn-primary">Comprar</a>
+    {% endif %}
+    </div>
   </div>
 
+{% endif %}
+{% endfor %}
+  {% endblock %}
+  
+  {% block contenido2 %}
+  {% if form %}
+    <form action="" method="POST">
+      {% csrf_token %}
+      <table>
+          {{form.as_table}}
+      </table>
+      <input class="btn btn-primary" type="submit", value="Enviar comentario">
+    </form>
+{% endif %}
 {% endblock %}
+
+{% block titulo2 %}
+    <h2 style="text-align:center">Dejar un comentario</h2>
+{% endblock %}
+{% block contenido3 %}
+{% for descripciones in descripcion %}
+    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+     <div class="card-header">{{descripciones.usuario.nombre}}</div>
+      <div class="card-body">
+       <p class="card-text">{{descripciones.comentario}}</p>
+       <p><i class="fa-solid fa-star"></i> {{descripciones.puntuacion}}</p>
+     </div>
+    </div>
+  {% endfor %}
+  {% endblock %}
 
 

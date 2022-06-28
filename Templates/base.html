@@ -27,45 +27,42 @@
               <li class="nav-item">
                 <a class="nav-link" href="/descripcion/">Comentarios</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/proyecto_app/detalle-productos/{{object.id}}/">Comentarios</a>
-              </li>
-
+              {% if request.user.is_authenticated and request.user.is_superuser %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/productos/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                   Crear nuevo
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="/nuevo_producto/">Producto</a>
-                  <a class="dropdown-item" href="/nuevo_usuario/">Usuario</a>
                   <a class="dropdown-item" href="/nuevo_comentario/">Comentario</a>
                 </div>
-              </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0" method="GET" action="/buscar/">
-            <input class="form-control mr-sm-2" type="text" name="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-primary" type="submit">Buscar</button>
-          </form>
-
-          {% if request.user.is_authenticated %}
+              </li> 
+              {% endif %}  
+            </ul> 
+            <form class="form-inline my-2 my-lg-0" method="GET" action="/buscar/">
+              <input class="form-control mr-sm-2" type="text" name="search" placeholder="Buscar" aria-label="Search">
+              <button class="btn btn-primary" type="submit">Buscar</button>
+            </form>    
+            <ul class="navbar-nav ml-auto">
+              {% if request.user.is_authenticated %}  
           <li class="nav-item" style="margin-right: 2rem">
-              <h5>{{request.user.username}}</h5>
+              <h5 style="color:white">{{request.user.username}}</h5>
           </li>
           <li class="nav-item">
-              <img src="{{request.user.user_profile.image.url}}" style="height: 2rem;">
+              <img src="{{request.user.user_profile.imagen.url}}" style="height: 2rem;">
           </li>
-
           <li class="nav-item">
-            <button class=" btn btn-primary"> <a class="nav-link" href="/logout/">Logout</a> </button>
+            <a class="btn btn-primary" href="/logout/">Logout</a>
           </li>
           {% else %}
           <li class="nav-item">
-              <button class=" btn btn-primary"> <a class="nav-link" href="/login/">Login</a></button>
+              <a class="btn btn-primary" href="/login/">Login</a>
           </li>
           <li class="nav-item">
-          <button class=" btn btn-primary"> <a class="nav-link" href="/register/">Register</a></button>
+           <a class="btn btn-primary" href="/register/">Register</a>
           </li>
           {% endif %}
+        </ul>
         </div>
       </nav>
 
@@ -73,8 +70,21 @@
     
       {% endblock %}
 
-  <div class="d-flex" style="margin-top:5rem; justify-content: space-evenly;">
+  <div class="d-flex" style="margin-bottom:5rem; justify-content: space-evenly;">
     {% block contenido %}
+    
+    {% endblock %}
+  </div>
+  {% block titulo2 %}
+    
+  {% endblock %}
+  <div class="d-flex" style="margin-bottom: 2rem;justify-content: center;">
+    {% block contenido2 %}
+    
+    {% endblock %}
+  </div>
+  <div class="d-flex" style="margin-bottom: 5rem;justify-content: space-evenly; flex-wrap:wrap">
+    {% block contenido3 %}
     
     {% endblock %}
   </div>

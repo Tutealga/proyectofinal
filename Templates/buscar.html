@@ -7,7 +7,7 @@
         <h5 class="card-title">{{buscar_producto.nombre}}</h5>
         <p class="card-text">${{buscar_producto.precio}}</p>
         <p class="card-text">{{buscar_producto.sku}}</p>
-        <a href="#" class="btn btn-primary">Comprar</a>
+        <a href="/detalle-productos/{{buscar_producto.id}}/" class="btn btn-primary">Detalle</a>
       </div>
     </div>
  {% endfor %}
@@ -21,14 +21,5 @@
         <p class="card-text">DNI: {{buscar_usuario.DNI}}</p>
       </div>
     </div>
- {% endfor %}
-
- {% for buscar_descripcion in buscar_descripciones %}
- <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-  <div class="card-header">{{buscar_descripcion.id}}</div>
-   <div class="card-body">
-    <p class="card-text">{{buscar_descripcion.comentario}}</p>
-    <p><i class="fa-solid fa-star"></i> {{buscar_descripcion.puntuacion}}</p>
-  </div>
  {% endfor %}
 {% endblock %}
