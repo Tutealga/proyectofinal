@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <h1 style="text-align:center">Borrar Perfil de Usuario</h1>
+{% endblock %}
+
+{% block contenido %}
+<h3 style="color: red">Estas por eliminar el usuario {{object.usuario}}, estas seguro?</h3>
+
+<form method = "POST">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Eliminar</button>
+</form>
+
+
+{% endblock %}

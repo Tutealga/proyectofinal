@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<h1 style="text-align: center">Detalle Perfil de Usuario</h1>
+{% endblock %}
+
+{% block contenido %}
+    <div class="card" style="width: 18rem">
+        {% if usuario.imagen %}
+         <img src="{{object.imagen.url}}" class="card-img-top" >
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{object.usuario}}</h5>
+          <p class="card-text">${{object.telefono}}</p>
+          <p class="card-text">{{object.imagen}}</p>
+          <a href="/editar-usuario-perfil/{{object.id}}/" class="btn btn-primary">Editar</a>
+          <a href="/borrar-usuario-perfil/{{object.id}}/" class="btn btn-danger">Eliminar</a>
+        </div>
+      </div>
+
+{% endblock %}

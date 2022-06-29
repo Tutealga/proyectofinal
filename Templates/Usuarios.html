@@ -5,19 +5,17 @@
 {% endblock %}
 
 {% block contenido %}
-<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
     {% for usuario in usuario_perfil %}
     <div class="card" style="width: 18rem;">
-      {% if usuario.image %}
       <img src="{{usuario.imagen.url}}" class="card-img-top" >
-      {% endif %}
         <div class="card-body">
-          <img src="{{usuario.imagen.url}}" class="card-img-top" >
-          <p class="card-text">Usuario: {{usuario.usuario}}</p>
+          <h5 class="card-title">{{usuario.usuario}}</h5>
           <p class="card-text">Telefono: {{usuario.telefono}}</p>
+          {% if request.user.is_authenticated and request.user.is_superuser %}
+        <a href="/detalle-usuario-perfil/{{usuario.id}}/" class="btn btn-primary">Detalle</a>
+    {% endif %}
         </div>
       </div>
 
     {% endfor %}   
-</div>  
 {% endblock %}

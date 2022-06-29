@@ -11,4 +11,6 @@ class ProductosAdmin(admin.ModelAdmin):
 class DescripcionAdmin(admin.ModelAdmin):
     list_display= ['comentario','puntuacion','usuario']
 
-admin.site.register(Usuario_perfil)
+@admin.register(Usuario_perfil)
+class UsuarioPerfilAdmin(admin.ModelAdmin):
+    list_display= ['usuario','telefono','imagen']

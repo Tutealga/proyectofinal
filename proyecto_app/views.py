@@ -2,7 +2,7 @@ from urllib import request
 import django
 from django.shortcuts import render, redirect
 from proyecto_app.models import Productos, Usuario_perfil, Descripcion
-from proyecto_app.forms import Usuarios_form, Productos_form, Descripcion_form
+from proyecto_app.forms import Productos_form
 
 from django.views.generic import DetailView, DeleteView, UpdateView
 
@@ -31,6 +31,24 @@ class Editar_productos(UpdateView):
     def get_success_url(self):
         return reverse('detalle_producto', kwargs = {'pk':self.object.pk})
 
+class Detalle_Usuario_perfil(DetailView):
+    model = Usuario_perfil
+    template_name = 'detalle_usuario_perfil.html'
+
+class Borrar_Usuario_perfil(DeleteView):
+    model = Usuario_perfil
+    template_name = 'borrar_usuario_perfil.html'
+    def get_success_url(self):
+        return reverse('productos')
+
+class Editar_Usuario_perfil(UpdateView):
+    model = Usuario_perfil
+    template_name = 'editar_usuario_perfil.html'
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('detalle_usuario_perfil', kwargs = {'pk':self.object.pk})
+
 # Vista productos
 def productos(request):
     productos = Productos.objects.all()
@@ -52,28 +70,8 @@ def descripcion(request):
 # Vista para buscar entre modelos
 def buscar(request):
     buscar_productos = Productos.objects.filter(nombre__icontains = request.GET['search'])
-    buscar_usuarios = Usuarios.objects.filter(nombre__icontains = request.GET['search'])
-    context = {'buscar_productos':buscar_productos,'buscar_usuarios':buscar_usuarios}
+    context = {'buscar_productos':buscar_productos}
     return render(request, 'buscar.html', context = context)
-
-# Vista crear nuevo usuario
-def nuevo_usuario(request):
-    if request.method == 'GET':
-        form = Usuarios_form()
-        context = {'form':form}
-        return render(request, 'nuevo_usuario.html', context=context)
-    else:
-        form = Usuarios_form(request.POST)
-        if form.is_valid():
-            nuevo_usuario = Usuarios.objects.create(
-                nombre = form.cleaned_data['nombre'],
-                edad = form.cleaned_data['edad'],
-                fecha_alta = form.cleaned_data['fecha_alta'],
-                DNI = form.cleaned_data['DNI'],
-            )
-
-            context ={'nuevo_usuario':nuevo_usuario}
-        return render(request, 'nuevo_usuario.html', context=context)
 
 # Vista crear nuevo producto
 def nuevo_producto(request):
@@ -95,25 +93,7 @@ def nuevo_producto(request):
             context ={'nuevo_producto':nuevo_producto}
         return render(request, 'nuevo_producto.html', context=context)
   else:
-        return redirect('login')
-
-# Vista crear nuevo comentario
-def nuevo_descripcion(request):
-    if request.method == 'GET':
-        form = Descripcion_form()
-        context = {'form':form}
-        return render(request, 'nuevo_descripcion.html', context=context)
-    else:
-        form = Descripcion_form(request.POST)
-        if form.is_valid():
-            nuevo_descripcion = Descripcion.objects.create(
-                comentario = form.cleaned_data['comentario'],
-                puntuacion = form.cleaned_data['puntuacion'],
-                usuario = form.cleaned_data['usuario'],
-            )
-
-            context ={'nuevo_descripcion':nuevo_descripcion}
-        return render(request, 'nuevo_descripcion.html', context=context)
+        return redirect('index')
 
 #Vista para Login/Logout/Register
 def login_view(request):
@@ -151,7 +131,6 @@ def register_view(request):
             password = form.cleaned_data['password1']
             user = authenticate(username = username, password = password)
             login(request, user)
-            context = {'message':f'Usuario creado correctamente {username}'}
             return redirect('index')
         else:
             errors = form.errors
@@ -164,6 +143,7 @@ def register_view(request):
         return render(request, 'auth/register.html', context =context)
 
 def logout_view(request):
+  if request.user.is_authenticated:
     logout(request)
     return redirect('index')
 

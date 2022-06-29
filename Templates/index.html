@@ -4,10 +4,10 @@
     <h1 style="text-align:center">Tienda online de...</h1>
 {% endblock %}
 
-
 {% block contenido %}
-{% for product in productos %}
-{% if product.stock == True %}
+ {{errors}}
+ {% for product in productos %}
+  {% if product.stock == True %}
 
   <div class="card" style="width: 18rem">
     <div class="card-body">
@@ -21,36 +21,48 @@
     {% endif %}
     </div>
   </div>
-
-{% endif %}
-{% endfor %}
-  {% endblock %}
+  {% endif %}
+ {% endfor %}
+{% endblock %}
   
-  {% block contenido2 %}
-  {% if form %}
-    <form action="" method="POST">
-      {% csrf_token %}
-      <table>
-          {{form.as_table}}
-      </table>
-      <input class="btn btn-primary" type="submit", value="Enviar comentario">
-    </form>
-{% endif %}
+{% block contenido2 %}
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        {% for descripciones in descripcion %}
+        <div class="media-list">
+          <div>
+            <img class="avatar avatar-sm mr-4" src="{{request.user.usuario_perfil.imagen.url}}">
+            <div class="media-body">
+              <div class="small-1">
+                 <b>{{descripciones.usuario}}</b>
+                 <div class="ml-4 opacity-70 small-3">{{descripciones.puntuacion}}</div>
+              </div>
+              <p>{{descripciones.comentario}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% if form %}
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+              {{form}}
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Comentar</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+ 
 {% endblock %}
 
 {% block titulo2 %}
     <h2 style="text-align:center">Dejar un comentario</h2>
 {% endblock %}
-{% block contenido3 %}
-{% for descripciones in descripcion %}
-    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-     <div class="card-header">{{descripciones.usuario.nombre}}</div>
-      <div class="card-body">
-       <p class="card-text">{{descripciones.comentario}}</p>
-       <p><i class="fa-solid fa-star"></i> {{descripciones.puntuacion}}</p>
-     </div>
-    </div>
-  {% endfor %}
-  {% endblock %}
+
 
 

@@ -1,14 +1,8 @@
+from distutils.command import upload
 from django import forms
-from proyecto_app.models import Descripcion, Productos, Usuario_perfil
+from proyecto_app.models import Descripcion, Productos
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
-
-# Formulario para crear usuarios
-class Usuarios_form(forms.ModelForm):
-    class Meta:
-        model = Usuario_perfil
-        fields = '__all__'
 
 # Formulario para crear productos
 class Productos_form(forms.ModelForm):
@@ -18,10 +12,14 @@ class Productos_form(forms.ModelForm):
 
 # Formulario para crear comentarios
 class Descripcion_form(forms.ModelForm):
+    comentario = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'md-textarea form-control',
+        'placeholder': 'Deja tu comentario...',
+        'rows': '4',
+    }))
     class Meta:
         model = Descripcion
-        fields = '__all__'
-
+        fields = ['comentario','puntuacion']
 
 #Formulario para crear usuarios login/register
 class User_registration_form(UserCreationForm):
