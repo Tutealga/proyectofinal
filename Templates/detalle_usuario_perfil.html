@@ -6,13 +6,12 @@
 
 {% block contenido %}
     <div class="card" style="width: 18rem">
-        {% if usuario.imagen %}
+        {% if object.imagen.url %}
          <img src="{{object.imagen.url}}" class="card-img-top" >
         {% endif %}
         <div class="card-body">
           <h5 class="card-title">{{object.usuario}}</h5>
-          <p class="card-text">${{object.telefono}}</p>
-          <p class="card-text">{{object.imagen}}</p>
+          <p class="card-text">Telefono: {{object.telefono}}</p>
           <a href="/editar-usuario-perfil/{{object.id}}/" class="btn btn-primary">Editar</a>
           <a href="/borrar-usuario-perfil/{{object.id}}/" class="btn btn-danger">Eliminar</a>
         </div>

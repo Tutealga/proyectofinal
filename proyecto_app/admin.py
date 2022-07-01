@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from proyecto_app.models import Productos, Descripcion, Usuario_perfil
+from proyecto_app.models import Productos, Descripcion, Usuario_perfil, ModificacionesInicio
 
 
 @admin.register(Productos)
@@ -14,3 +14,8 @@ class DescripcionAdmin(admin.ModelAdmin):
 @admin.register(Usuario_perfil)
 class UsuarioPerfilAdmin(admin.ModelAdmin):
     list_display= ['usuario','telefono','imagen']
+
+@admin.register(ModificacionesInicio)
+class ModificacionesInicioAdmin(admin.ModelAdmin):
+    list_display= ['titulo','descripcion','banner']
+

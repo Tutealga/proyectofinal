@@ -39,13 +39,13 @@
               <input class="form-control mr-sm-2" type="text" name="search" placeholder="Buscar" aria-label="Search">
               <button class="btn btn-primary" type="submit">Buscar</button>
             </form>    
-            <ul class="navbar-nav ml-auto">
+            <ul style="align-items: center;" class="navbar-nav ml-auto">
               {% if request.user.is_authenticated %}  
-          <li class="nav-item" style="margin-right: 2rem">
+              <li class="nav-item" style="margin-right: 1rem">
+                <img src="{{request.user.usuario_perfil.imagen.url}}" style="height: 2rem;">
+            </li>
+              <li class="nav-item" style="margin-right: 2rem">
               <h5 style="color:white">{{request.user.username}}</h5>
-          </li>
-          <li class="nav-item">
-              <img src="{{request.user.usuario_perfil.imagen.url}}" style="height: 2rem;">
           </li>
           <li class="nav-item">
             <a class="btn btn-primary" href="/logout/">Logout</a>
@@ -74,11 +74,9 @@
   {% block titulo2 %}
     
   {% endblock %}
-  <div class="d-flex" style="margin-bottom: 2rem;justify-content: center;">
     {% block contenido2 %}
     
     {% endblock %}
-  </div>
     
 </body>
 

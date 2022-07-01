@@ -4,18 +4,18 @@
     <h1 style="text-align:center">Usuarios</h1>
 {% endblock %}
 
+
 {% block contenido %}
-    {% for usuario in usuario_perfil %}
+ {% if request.user.is_authenticated and request.user.is_superuser %}
+ {% for usuario in usuario_perfil %}
     <div class="card" style="width: 18rem;">
       <img src="{{usuario.imagen.url}}" class="card-img-top" >
         <div class="card-body">
           <h5 class="card-title">{{usuario.usuario}}</h5>
           <p class="card-text">Telefono: {{usuario.telefono}}</p>
-          {% if request.user.is_authenticated and request.user.is_superuser %}
         <a href="/detalle-usuario-perfil/{{usuario.id}}/" class="btn btn-primary">Detalle</a>
-    {% endif %}
         </div>
       </div>
-
-    {% endfor %}   
+  {% endfor %}
+ {% endif %}
 {% endblock %}

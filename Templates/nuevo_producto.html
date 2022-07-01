@@ -16,17 +16,14 @@
     </form>
 {% elif nuevo_producto %}
     <div class="card" style="width: 18rem">
+      <img src="{{nuevo_producto.imagen.url}}" class="card-img-top" >
         <div class="card-body">
           <h5 class="card-title">{{nuevo_producto.nombre}}</h5>
           <p class="card-text">${{nuevo_producto.precio}}</p>
-          <p class="card-text">{{nuevo_producto.sku}}</p>
-        {% if request.user.is_authenticated and request.user.is_superuser %}
-           <a href="/detalle-productos/{{nuevo_product.id}}/" class="btn btn-primary">Detalle</a>
-        {% else %}
-           <a href="#" class="btn btn-primary">Comprar</a>
-        {% endif %}
+          <p class="card-text">{{nuevo_producto.sku}}</p> 
         </div>
       </div>
+      <button href="/productos/" class="btn btn-primary btn-block">Ver todos los productos</button>
 
 {% endif %}
 

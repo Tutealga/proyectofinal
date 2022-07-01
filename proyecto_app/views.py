@@ -1,7 +1,7 @@
 from urllib import request
 import django
 from django.shortcuts import render, redirect
-from proyecto_app.models import Productos, Usuario_perfil, Descripcion
+from proyecto_app.models import ModificacionesInicio, Productos, Usuario_perfil, Descripcion
 from proyecto_app.forms import Productos_form
 
 from django.views.generic import DetailView, DeleteView, UpdateView
@@ -61,12 +61,6 @@ def usuarios(request):
     context = {'usuario_perfil':usuarios}
     return render(request, 'usuarios.html', context = context)
 
-# Vista comentarios
-def descripcion(request):
-    descripcion = Descripcion.objects.all()
-    context = {'descripcion':descripcion}
-    return render(request, 'descripcion.html', context = context)
-
 # Vista para buscar entre modelos
 def buscar(request):
     buscar_productos = Productos.objects.filter(nombre__icontains = request.GET['search'])
@@ -81,8 +75,8 @@ def nuevo_producto(request):
         context = {'form':form}
         return render(request, 'nuevo_producto.html', context=context)
     else:
-        form = Productos_form(request.POST)
-        if form.is_valid():
+         form = Productos_form(request.POST)
+         if form.is_valid():
             nuevo_producto = Productos.objects.create(
                 nombre = form.cleaned_data['nombre'],
                 precio = form.cleaned_data['precio'],
@@ -90,10 +84,10 @@ def nuevo_producto(request):
                 stock = form.cleaned_data['stock'],
             )
   
-            context ={'nuevo_producto':nuevo_producto}
-        return render(request, 'nuevo_producto.html', context=context)
+         context ={'nuevo_producto':nuevo_producto}
+         return render(request, 'nuevo_producto.html', context=context)
   else:
-        return redirect('index')
+       return redirect('index')
 
 #Vista para Login/Logout/Register
 def login_view(request):
@@ -146,4 +140,6 @@ def logout_view(request):
   if request.user.is_authenticated:
     logout(request)
     return redirect('index')
+
+
 
