@@ -1,6 +1,8 @@
 from email.policy import default
 from django.db import models
+from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 class ModificacionesInicio(models.Model):
     titulo = models.CharField(max_length=300)
@@ -13,7 +15,9 @@ class ModificacionesInicio(models.Model):
 
 class Usuario_perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=300)
     telefono = models.CharField(max_length=20)
+    web = models.CharField(max_length=300)
     imagen = models.ImageField(upload_to='profile_image', default='profile_image/descarga.png')
 
     class Meta:

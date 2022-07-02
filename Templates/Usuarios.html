@@ -6,16 +6,31 @@
 
 
 {% block contenido %}
+{% for usuario in usuario_perfil %}
  {% if request.user.is_authenticated and request.user.is_superuser %}
- {% for usuario in usuario_perfil %}
     <div class="card" style="width: 18rem;">
       <img src="{{usuario.imagen.url}}" class="card-img-top" >
         <div class="card-body">
           <h5 class="card-title">{{usuario.usuario}}</h5>
+          <p class="card-text">Descripcion: {{usuario.descripcion}}</p>
           <p class="card-text">Telefono: {{usuario.telefono}}</p>
+          <p class="card-text">Web: {{usuario.web}}</p>
         <a href="/detalle-usuario-perfil/{{usuario.id}}/" class="btn btn-primary">Detalle</a>
         </div>
       </div>
-  {% endfor %}
+  {% else %}
+  {% if usuario.usuario == request.user and request.user.is_authenticated %}
+  <div class="card" style="width: 18rem;">
+    <img src="{{usuario.imagen.url}}" class="card-img-top" >
+      <div class="card-body">
+        <h5 class="card-title">{{usuario.usuario}}</h5>
+        <p class="card-text">Descripcion: {{usuario.descripcion}}</p>
+        <p class="card-text">Telefono: {{usuario.telefono}}</p>
+        <p class="card-text">Web: {{usuario.web}}</p>
+      <a href="/detalle-usuario-perfil/{{usuario.id}}/" class="btn btn-primary">Detalle</a>
+      </div>
+    </div>
+  {% endif %}
  {% endif %}
+ {% endfor %}
 {% endblock %}

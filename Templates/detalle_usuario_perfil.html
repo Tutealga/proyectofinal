@@ -11,7 +11,9 @@
         {% endif %}
         <div class="card-body">
           <h5 class="card-title">{{object.usuario}}</h5>
+          <p class="card-text">Descripcion: {{object.descripcion}}</p>
           <p class="card-text">Telefono: {{object.telefono}}</p>
+          <p class="card-text">Web: {{object.web}}</p>
           <a href="/editar-usuario-perfil/{{object.id}}/" class="btn btn-primary">Editar</a>
           <a href="/borrar-usuario-perfil/{{object.id}}/" class="btn btn-danger">Eliminar</a>
         </div>

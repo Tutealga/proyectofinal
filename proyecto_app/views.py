@@ -3,15 +3,18 @@ import django
 from django.shortcuts import render, redirect
 from proyecto_app.models import ModificacionesInicio, Productos, Usuario_perfil, Descripcion
 from proyecto_app.forms import Productos_form
+from django.contrib import messages
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 
 from django.views.generic import DetailView, DeleteView, UpdateView
 
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm    
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from proyecto_app.forms import User_registration_form
 
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 class Detalle_productos(DetailView):
     model = Productos
@@ -44,7 +47,8 @@ class Borrar_Usuario_perfil(DeleteView):
 class Editar_Usuario_perfil(UpdateView):
     model = Usuario_perfil
     template_name = 'editar_usuario_perfil.html'
-    fields = '__all__'
+    fields = ('descripcion','telefono','imagen','web')
+   
 
     def get_success_url(self):
         return reverse('detalle_usuario_perfil', kwargs = {'pk':self.object.pk})
@@ -140,6 +144,10 @@ def logout_view(request):
   if request.user.is_authenticated:
     logout(request)
     return redirect('index')
+
+class CambiarContraseña(PasswordChangeView):
+ form_class = PasswordChangeForm
+ success_url = reverse_lazy('index')
 
 
 
