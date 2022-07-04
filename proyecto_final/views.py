@@ -24,7 +24,7 @@ def index(request):
             )
 
             context ={'descripcion':descripcion,'productos':productos}
-        return redirect('index')
+        return redirect('/#comentarios')
      else:
         context ={'errors':'Debes estar logiado para dejar un comentario'}
         return render(request, 'index.html', context=context)

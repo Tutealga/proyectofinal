@@ -18,6 +18,6 @@ urlpatterns = [
     
     path('login/', login_view, name = 'login'),
     path('logout/', logout_view, name = 'logout'),
-    path('register/', register_view, name = 'register'),
+    path('registrarse/', register_view, name = 'register'),
     path('contraseña/', CambiarContraseña.as_view(template_name='auth/cambiar-contraseña.html')),
 ]

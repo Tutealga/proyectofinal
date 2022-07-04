@@ -2,7 +2,6 @@ from django.contrib import admin
 
 from proyecto_app.models import Productos, Descripcion, Usuario_perfil, ModificacionesInicio
 
-
 @admin.register(Productos)
 class ProductosAdmin(admin.ModelAdmin):
     list_display= ['nombre','precio','SKU','stock']

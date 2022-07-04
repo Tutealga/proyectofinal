@@ -1,7 +1,7 @@
 from urllib import request
 import django
 from django.shortcuts import render, redirect
-from proyecto_app.models import ModificacionesInicio, Productos, Usuario_perfil, Descripcion
+from proyecto_app.models import Productos, Usuario_perfil
 from proyecto_app.forms import Productos_form
 from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView
@@ -42,7 +42,7 @@ class Borrar_Usuario_perfil(DeleteView):
     model = Usuario_perfil
     template_name = 'borrar_usuario_perfil.html'
     def get_success_url(self):
-        return reverse('productos')
+        return reverse('usuarios')
 
 class Editar_Usuario_perfil(UpdateView):
     model = Usuario_perfil
