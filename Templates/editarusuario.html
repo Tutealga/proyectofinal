@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+<h1 style="text-align:center">Complete los campos que quiera modificar</h1>
+{% endblock %}
+
+{% block contenido %}
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input class="btn btn-primary" type="submit", value="Enviar">
+    </form>
+{% endblock %}

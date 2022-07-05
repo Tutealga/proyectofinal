@@ -21,8 +21,8 @@ def index(request):
                 comentario = form.cleaned_data['comentario'],
                 puntuacion = form.cleaned_data['puntuacion'],
                 usuario = request.user,
+                imagen = request.user.usuario_perfil.imagen.url,
             )
-
             context ={'descripcion':descripcion,'productos':productos}
         return redirect('/#comentarios')
      else:

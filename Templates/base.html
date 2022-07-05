@@ -21,6 +21,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/productos/">Productos</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about/">About</a>
+              </li>
               {% if request.user.is_authenticated and request.user.is_superuser %}
               <li class="nav-item">
                 <a class="nav-link" href="/usuarios/">Usuarios</a>
@@ -48,7 +51,7 @@
               <h5 style="color:white">{{request.user.username}}</h5>
           </li>
           <li class="nav-item">
-            <a href="/usuarios/" class="btn btn-primary">Editar usuario</a>
+            <a href="/editar-usuario-perfil/{{request.user.usuario_perfil.id}}/" class="btn btn-primary">Editar usuario</a>
           </li>
           <li class="nav-item">
             <a class="btn btn-primary" href="/logout/">Logout</a>

@@ -13,15 +13,15 @@ class ModificacionesInicio(models.Model):
 
 class Usuario_perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    descripcion = models.CharField(max_length=300)
-    telefono = models.CharField(max_length=20)
-    web = models.URLField(max_length=300)
+    descripcion = models.CharField(max_length=300, null=True, blank=True)
+    telefono = models.CharField(max_length=20, null=True, blank=True)
+    web = models.URLField(max_length=300, null=True, blank=True)
     imagen = models.ImageField(upload_to='profile_image', default='profile_image/descarga.png')
 
     class Meta:
         verbose_name = 'perfil'
         verbose_name_plural = 'perfiles'
-
+        
 # Modelo productos
 class Productos(models.Model):
     nombre = models.CharField(max_length=40)
@@ -36,9 +36,22 @@ class Productos(models.Model):
     
 # Modelo comentarios   
 class Descripcion(models.Model):
+    opciones = ( 
+    ("1", "1"), 
+    ("2", "2"), 
+    ("3", "3"), 
+    ("4", "4"), 
+    ("5", "5"), 
+    ("6", "6"), 
+    ("7", "7"), 
+    ("8", "8"), 
+    ("9", "9"),
+    ("10", "10"),
+) 
     comentario = models.TextField()
-    puntuacion = models.IntegerField(default=1)
+    puntuacion = models.CharField(default=1, choices=opciones, max_length=2)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='descripcion_image')
     
     class Meta:
         verbose_name = 'descripcion'

@@ -2,7 +2,7 @@ from distutils.command import upload
 from django import forms
 from proyecto_app.models import Descripcion, Productos
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm , UserChangeForm
 
 # Formulario para crear productos
 class Productos_form(forms.ModelForm):
@@ -31,4 +31,12 @@ class User_registration_form(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {k:'' for k in fields}
+
+class Editar_usuario(UserChangeForm):
+    username = forms.CharField(max_length=100, widget=forms.TextInput() )
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ["username","email"]
 

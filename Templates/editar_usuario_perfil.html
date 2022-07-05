@@ -5,15 +5,12 @@
 {% endblock %}
 
 {% block contenido %}
-    {% if form %}
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form class="d-flex flex-column" action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <table>
-                {{form.as_table}}
+                {{form.as_table}}  
             </table>
-            <input class="btn btn-primary" type="submit" , value="Enviar">
-            <button class="btn btn-primary"><a style="color:white" href="/contraseña/">Cambiar contraseña</a></button>
+            <button class="mb-1 mt-1 mr-auto btn btn-primary"><a style="color:white" href="/editar-usuario/{{object.id}}/">Modificar usuario<a href=""></a></a></button>
+            <input style="margin:0.25rem auto 1rem 0" class="btn btn-primary" type="submit" , value="Enviar">
         </form>
-    {% endif %}
-
 {% endblock %}

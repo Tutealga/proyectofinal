@@ -1,16 +1,18 @@
-from urllib import request
+from distutils.log import info
+from multiprocessing import context
 import django
 from django.shortcuts import render, redirect
 from proyecto_app.models import Productos, Usuario_perfil
-from proyecto_app.forms import Productos_form
+from proyecto_app.forms import Productos_form, Editar_usuario
 from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 
 from django.views.generic import DetailView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm    
-from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from proyecto_app.forms import User_registration_form
 
@@ -48,10 +50,9 @@ class Editar_Usuario_perfil(UpdateView):
     model = Usuario_perfil
     template_name = 'editar_usuario_perfil.html'
     fields = ('descripcion','telefono','imagen','web')
-   
-
+ 
     def get_success_url(self):
-        return reverse('detalle_usuario_perfil', kwargs = {'pk':self.object.pk})
+     return reverse('detalle_usuario_perfil', kwargs = {'pk':self.object.pk})
 
 # Vista productos
 def productos(request):
@@ -64,6 +65,9 @@ def usuarios(request):
     usuarios = Usuario_perfil.objects.all()
     context = {'usuario_perfil':usuarios}
     return render(request, 'usuarios.html', context = context)
+
+def about(request):
+    return render(request, 'about.html')
 
 # Vista para buscar entre modelos
 def buscar(request):
@@ -148,6 +152,16 @@ def logout_view(request):
 class CambiarContraseña(PasswordChangeView):
  form_class = PasswordChangeForm
  success_url = reverse_lazy('index')
+
+class Edit_username_password(LoginRequiredMixin, UpdateView):
+    form_class = Editar_usuario
+    template_name = 'editarusuario.html'
+
+    def get_object(self):                            
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse('index')   
 
 
 
