@@ -5,10 +5,13 @@
 {% endblock %}
 
 {% block contenido %}
+<div class="container">
+    <img style="max-width: 250px;" src="{{request.user.usuario_perfil.imagen.url}}" class="card-img-top" >
     <form action="" method="POST">{% csrf_token %}
         <table>
             {{ form.as_table }}
         </table>
         <input class="btn btn-primary" type="submit", value="Enviar">
     </form>
+</div>
 {% endblock %}

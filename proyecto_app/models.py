@@ -2,6 +2,7 @@ from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 
+#Modelo de las modificaciones del index
 class ModificacionesInicio(models.Model):
     titulo = models.CharField(max_length=300)
     descripcion = models.CharField(max_length=300)
@@ -11,6 +12,7 @@ class ModificacionesInicio(models.Model):
         verbose_name = 'modificacion inicio'
         verbose_name_plural = 'modificaciones inicio'
 
+#Modelo del perfil de usuario
 class Usuario_perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=300, null=True, blank=True)
@@ -22,7 +24,7 @@ class Usuario_perfil(models.Model):
         verbose_name = 'perfil'
         verbose_name_plural = 'perfiles'
         
-# Modelo productos
+# Modelo de los productos
 class Productos(models.Model):
     nombre = models.CharField(max_length=40)
     precio = models.FloatField()
@@ -34,7 +36,7 @@ class Productos(models.Model):
         verbose_name = 'producto'
         verbose_name_plural = 'productos'
     
-# Modelo comentarios   
+# Modelo de los comentarios   
 class Descripcion(models.Model):
     opciones = ( 
     ("1", "1"), 

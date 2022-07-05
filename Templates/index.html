@@ -2,10 +2,18 @@
 
 {% block titulo %}
 {% for modificacion in modificacionesinicio %}
-<div class="container-fluid" style="text-align: center; background-image:url('{{modificacion.banner.url}}')">
-    <h1 style="color:white">{{modificacion.titulo}}</h1>
-    <p style="color:white">{{modificacion.descripcion}}</p>
-    <img class="img-fluid" src="{{modificacion.banner.url}}">
+  <div class="container card mb-3 ">
+    <div class="row no-gutters">
+      <div class="col-md-6">
+        <img class="img-fluid m-100" src="{{modificacion.banner.url}}">
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h5 class="card-title">{{modificacion.titulo}}</h5>
+          <p class="card-text">{{modificacion.descripcion}}</p>
+        </div>
+      </div>
+    </div>
   </div>
     {% endfor %}
 {% endblock %}

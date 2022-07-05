@@ -21,7 +21,7 @@ class Descripcion_form(forms.ModelForm):
         model = Descripcion
         fields = ['comentario','puntuacion']
 
-#Formulario para crear usuarios login/register
+#Formulario para crear usuarios (register)
 class User_registration_form(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
@@ -32,6 +32,7 @@ class User_registration_form(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {k:'' for k in fields}
 
+#Formulario para modificar usuarios (username y email)
 class Editar_usuario(UserChangeForm):
     username = forms.CharField(max_length=100, widget=forms.TextInput() )
     email = forms.EmailField()

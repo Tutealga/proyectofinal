@@ -18,16 +18,19 @@ from proyecto_app.forms import User_registration_form
 
 from django.urls import reverse, reverse_lazy
 
+#Vista de detalle producto
 class Detalle_productos(DetailView):
     model = Productos
     template_name = 'detalle_productos.html'
 
+#Vista de borrar producto
 class Borrar_productos(DeleteView):
     model = Productos
     template_name = 'borrar_productos.html'
     def get_success_url(self):
         return reverse('productos')
 
+#Vista de editar producto
 class Editar_productos(UpdateView):
     model = Productos
     template_name = 'editar_productos.html'
@@ -36,16 +39,19 @@ class Editar_productos(UpdateView):
     def get_success_url(self):
         return reverse('detalle_producto', kwargs = {'pk':self.object.pk})
 
+#Vista de detalle usuario
 class Detalle_Usuario_perfil(DetailView):
     model = Usuario_perfil
     template_name = 'detalle_usuario_perfil.html'
 
+#Vista de borrar usuario
 class Borrar_Usuario_perfil(DeleteView):
     model = Usuario_perfil
     template_name = 'borrar_usuario_perfil.html'
     def get_success_url(self):
         return reverse('usuarios')
 
+#Vista de editar usuario
 class Editar_Usuario_perfil(UpdateView):
     model = Usuario_perfil
     template_name = 'editar_usuario_perfil.html'
@@ -54,18 +60,19 @@ class Editar_Usuario_perfil(UpdateView):
     def get_success_url(self):
      return reverse('detalle_usuario_perfil', kwargs = {'pk':self.object.pk})
 
-# Vista productos
+# Vista mostar productos
 def productos(request):
     productos = Productos.objects.all()
     context = {'productos':productos}
     return render(request, 'productos.html', context = context)
 
-# Vista usuarios
+# Vista mostar usuarios
 def usuarios(request):
     usuarios = Usuario_perfil.objects.all()
     context = {'usuario_perfil':usuarios}
     return render(request, 'usuarios.html', context = context)
 
+#Vista de about me
 def about(request):
     return render(request, 'about.html')
 
@@ -97,7 +104,7 @@ def nuevo_producto(request):
   else:
        return redirect('index')
 
-#Vista para Login/Logout/Register
+#Vista para Login
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data = request.POST)
@@ -123,6 +130,7 @@ def login_view(request):
         context = {'form':form}
         return render(request, 'auth/login.html', context = context)
 
+#Vista para Register
 def register_view(request):
     if request.method == 'POST':
         form = User_registration_form(request.POST)
@@ -144,15 +152,18 @@ def register_view(request):
         context = {'form':form}
         return render(request, 'auth/register.html', context =context)
 
+#Vista para Logout
 def logout_view(request):
   if request.user.is_authenticated:
     logout(request)
     return redirect('index')
 
+#Vista personalizada para cambiar contraseña
 class CambiarContraseña(PasswordChangeView):
  form_class = PasswordChangeForm
  success_url = reverse_lazy('index')
 
+#Vista para cambiar username y email
 class Edit_username_password(LoginRequiredMixin, UpdateView):
     form_class = Editar_usuario
     template_name = 'editarusuario.html'

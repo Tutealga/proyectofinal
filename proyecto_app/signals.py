@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from proyecto_app.models import Usuario_perfil
 
+
+#Este archivo y codigos crea automaticamente el perfil de usuario (Usuario_perfil) al registrarse
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:

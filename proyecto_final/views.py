@@ -5,6 +5,8 @@ from proyecto_app.forms import Descripcion_form
 from proyecto_app.models import Descripcion, Productos, ModificacionesInicio
 from proyecto_app.views import usuarios
 
+
+#Vista del index, donde se pasan los comentarios, productos y modificaciones del inicio (titulo, imagen, descripcion)
 def index(request):
     descripcion = Descripcion.objects.all()
     productos = Productos.objects.all()
