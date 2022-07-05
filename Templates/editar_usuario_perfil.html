@@ -7,6 +7,7 @@
 {% block contenido %}
         <form class="d-flex flex-column" action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            <img style="max-width: 250px;" src="{{object.imagen.url}}" class="card-img-top" >
             <table>
                 {{form.as_table}}  
             </table>
